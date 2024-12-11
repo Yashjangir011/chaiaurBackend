@@ -2,9 +2,10 @@
   "name": "chaiaurbackend",
   "version": "1.0.0",
   "description": "a backend at chai aur code channel",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
   },
   "keywords": [
     "javascript",
@@ -12,6 +13,13 @@
   ],
   "author": "yash jangri",
   "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.8.4"
+  },
   "devDependencies": {
     "nodemon": "^3.1.7",
     "prettier": "^3.4.2"
