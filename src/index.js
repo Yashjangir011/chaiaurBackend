@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
-dotenv.config({path:'./env'});
+import express from "express";
+const app = express();
+dotenv.config({path:'./.env'});
 
 import { connectDB } from "./db/index.js";
 
@@ -13,6 +15,7 @@ connectDB()
 })
 .catch((err)=>{
     console.log('having issue in connecting to db')
+    console.log(err)
 })
 
 
