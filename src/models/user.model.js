@@ -41,15 +41,18 @@ const userSchema = new mongoose.Schema(
         }
     },{timestamps:true})
 
-    userSchema.pre("save" , async function(next){
-        if(!this.isModified("password")) return next();
-        this.password = await bcrypt.hash(this.password , 10);  
-        next();
-    })
+userSchema.pre("save" , async function(next){  //this is to modify the current pass with the hash pass before saving it to the database
+    if(!this.isModified("password")) return next();
+    this.password = await bcrypt.hash(this.password , 10);  // this will hash the pass and the 1o here is the salt rounds the more the number the more stronger isyoure pass 
+    next();
+})
 
-userSchema.methods.isPasswordCorrect = async function(password){
+
+// this async function is bascially for comparing the hash pass with the unhash pass
+userSchema.methods.isPasswordCorrect = async function(password){ 
     return await bcrypt.compare(password , this.password);
 }
+
 
 userSchema.methods.generateAccessToken = function(){
     return jwt.sign(
